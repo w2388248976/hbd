@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EAFEF0">
+  <meta name="description" content="给陈思罕 JACK 的生日小屋。与 honey 一起探索、拆开礼物、留下祝福，让金粉色烟花为你绽放。">
+  <title>JACK · 一间藏着喜欢的生日小屋</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍯%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a href="#room" class="skip-link">跳到生日小屋</a>
+  <header class="site-header">
+    <a class="brand" href="#"><span class="brand-mark">⌂<i>♥</i></span><span>honey’s little room<small>A BIRTHDAY FOR JACK</small></span></a>
+    <nav aria-label="主导航"><a href="#room" class="active">生日小屋</a></nav>
+    <button class="sound-button" id="sound-toggle" aria-pressed="false" aria-label="播放背景音乐"><span>♫</span><span id="sound-label">音乐 · 加载中</span></button>
+  </header>
+  <audio id="background-audio" autoplay loop preload="auto" aria-hidden="true"></audio>
+  <main>
+    <section class="hero" id="room" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> NOVEMBER 08 · A DAY JUST FOR YOU</div>
+        <h1 id="hero-title"><span class="jack">Dear <em>JACK,</em><i>✳</i></span><span class="cn-title">生日快乐</span></h1>
+        <p class="intro">这里有毛茸茸的陪伴、轻轻响起的旋律，<br class="desktop-break">还有 honey 为你准备的一点小小心意。<br>慢慢探索吧，惊喜就在某个角落。</p>
+        <div class="hero-actions"><button class="primary" id="start-explore">推开生日小屋 <span>↗</span></button><button class="text-link" data-open-wish>选一句祝福 <span>♡</span></button></div>
+        <div class="birthday-note"><span class="drawn-star">✧</span><p>陈思罕 <span>CHEN SIHAN · 2011.11.08</span><small>因为有你们在，我感受到的幸福总是大过一切。谢谢你们成为照亮我的一束光，我永远爱你们。</small></p></div>
+      </div>
+      <div class="room-column">
+        <div class="room-meta"><span><i></i> HONEY’S SECRET PLACE</span><span>01 / THE BIRTHDAY ROOM</span></div>
+        <div class="room-stage" id="room-stage" tabindex="0" aria-label="可交互的三维生日小屋，拖动调整视角，或使用下方按钮探索">
+          <div class="room-halo"></div><div id="scene-container"></div>
+          <div id="loading"><span class="loader-house">⌂</span>正在点亮小屋…</div>
+          <div class="room-label">闪闪发光 <span>✧</span></div>
+          <button class="reset-view" id="reset-view" aria-label="重置小屋视角" title="重置视角">⟲</button>
+          <div class="scene-tip" id="scene-tip"><span>✦</span> 试着点一下中间的礼物盒</div>
+          <div class="speech" id="speech" role="status" aria-live="polite"></div>
+          <canvas id="fireworks" aria-hidden="true"></canvas>
+          <div class="birthday-reveal" id="birthday-reveal" aria-hidden="true"><small>ALL OUR LOVE, JUST FOR YOU</small><strong>生日快乐，陈思罕</strong><span>愿你眼里有光，心中有热爱。♡</span></div>
+        </div>
+        <div class="room-toolbar"><span class="drag-hint">↔ 拖动小屋，换个角度看喜欢</span><span id="found-count">发现彩蛋 <b>0 / 4</b></span></div>
+        <div class="object-buttons" aria-label="探索房间物品"><button data-object="guitar">♫ 电吉他</button><button data-object="golden">🐕 大金毛</button><button data-object="dachshund">🐾 小腊肠</button><button data-object="cat">🐈 灰色猫咪</button><button data-object="monkey">🐒 小猴子</button><button data-object="gift" class="gift-shortcut">✧ 拆开礼物</button></div>
+      </div>
+    </section>
+    <section class="ritual" aria-label="生日惊喜步骤">
+      <div class="ritual-intro"><span>一点小心意，</span><em>等你亲手开启。</em></div>
+      <div class="ritual-step" id="step-1"><span class="step-icon">01</span><p>拆一份惊喜<small>点开礼物，发现草莓蛋糕</small></p><span class="step-arrow">→</span></div>
+      <div class="ritual-step" id="step-2"><span class="step-icon">02</span><p>选一句祝福<small>轻轻一点，把心意交给星光</small></p><span class="step-arrow">→</span></div>
+      <div class="ritual-step" id="step-3"><span class="step-icon">03</span><p>许一个心愿<small>吹灭蜡烛，让烟花绽放</small></p></div>
+    </section>
+    <footer><div class="brand footer-brand"><span class="brand-mark">⌂<i>♥</i></span><span>Made with love, by honey.</span></div><p>献给陈思罕 JACK · 11.08<br><small>非官方粉丝生日企划 · 每一份喜欢，都温柔以待</small></p><a href="#room">回到小屋 ↑</a></footer>
+  </main>
+  <dialog id="wish-dialog" aria-labelledby="form-title">
+    <button class="dialog-close" data-close="wish-dialog" aria-label="关闭祝福窗口">×</button>
+    <div class="dialog-eyebrow">A LITTLE WISH FOR JACK</div><div class="modal-illustration">🍓<span>✧</span></div>
+    <h2 id="form-title">挑一句祝福，送给你。</h2><p class="dialog-intro">今天想把哪一份美好送给 JACK？</p>
+    <form id="wish-form">
+      <fieldset class="wish-options"><legend>选择一份生日心意</legend>
+        <label class="wish-choice"><input type="radio" name="wish" value="生日快乐" checked required><span class="wish-letter">A</span><span class="wish-emoji" aria-hidden="true">🎂</span><span class="wish-text">生日快乐</span><span class="wish-check" aria-hidden="true">✓</span></label>
+        <label class="wish-choice"><input type="radio" name="wish" value="每天都有大鸡腿吃" required><span class="wish-letter">B</span><span class="wish-emoji" aria-hidden="true">🍗</span><span class="wish-text">每天都有大鸡腿吃</span><span class="wish-check" aria-hidden="true">✓</span></label>
+        <label class="wish-choice"><input type="radio" name="wish" value="健康平安" required><span class="wish-letter">C</span><span class="wish-emoji" aria-hidden="true">🍀</span><span class="wish-text">健康平安</span><span class="wish-check" aria-hidden="true">✓</span></label>
+        <label class="wish-choice"><input type="radio" name="wish" value="每天开开心心" required><span class="wish-letter">D</span><span class="wish-emoji" aria-hidden="true">☀️</span><span class="wish-text">每天开开心心</span><span class="wish-check" aria-hidden="true">✓</span></label>
+        <label class="wish-choice"><input type="radio" name="wish" value="一直做自己喜欢的事" required><span class="wish-letter">E</span><span class="wish-emoji" aria-hidden="true">🎸</span><span class="wish-text">一直做自己喜欢的事</span><span class="wish-check" aria-hidden="true">✓</span></label>
+        <label class="wish-choice"><input type="radio" name="wish" value="心愿都能慢慢实现" required><span class="wish-letter">F</span><span class="wish-emoji" aria-hidden="true">✨</span><span class="wish-text">心愿都能慢慢实现</span><span class="wish-check" aria-hidden="true">✓</span></label>
+      </fieldset>
+      <button class="primary submit-wish" type="submit">送出这份心意 <span>♡</span></button>
+    </form>
+  </dialog>
+  <dialog id="candle-dialog" aria-labelledby="candle-title"><button class="dialog-close" data-close="candle-dialog" aria-label="关闭吹蜡烛窗口">×</button><div class="dialog-eyebrow">MAKE A WISH</div><div class="candle-drawing"><span class="flame"></span><i></i><b>🍓</b></div><h2 id="candle-title">祝福送达，许个愿吧。</h2><p class="dialog-intro"><span id="selected-wish">生日快乐</span> ♡<br>把心意留在今天，再轻轻吹灭蜡烛。<br>一场金粉色烟花，正在等你。</p><button class="primary blow-button" id="blow-button">按住 1 秒，吹灭蜡烛 <span>✧</span></button><button class="mic-button" id="mic-button">或者，用麦克风轻轻吹气</button><p id="mic-status" class="form-note" role="status">麦克风仅用于本机检测吹气，不录音、不上传。</p></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
+
